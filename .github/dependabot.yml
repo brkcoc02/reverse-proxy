@@ -1,0 +1,11 @@
+version: 2
+updates:
+  - package-ecosystem: "npm"  # Specifies the ecosystem (e.g., npm, pip, Maven)
+    directory: "/"            # Directory where `package.json` is located
+    schedule:
+      interval: "daily"       # Frequency of checks (daily, weekly, or monthly)
+    ignore:
+      - dependency-name: "express"  # Example of ignoring specific dependencies
+        versions: ["<4.17.1"]       # Ignore specific versions (optional)
+    commit-message:
+      prefix: "deps"          # Prefix for pull request titles (e.g., "deps: update lodash")
