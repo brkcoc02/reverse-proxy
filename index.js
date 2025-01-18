@@ -2,6 +2,12 @@ const express = require('express');
 const { createProxyMiddleware } = require('http-proxy-middleware');
 
 const app = express();
+
+// Health check endpoint
+app.get('/ping', (req, res) => {
+  res.status(200).send('Service is operational');
+});
+
 const target = process.env.TARGET_URL;
 
 app.use('/', createProxyMiddleware({
