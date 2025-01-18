@@ -12,10 +12,6 @@ app.use('/', createProxyMiddleware({
   }
 }));
 
-app.get('/status', (req, res) => {
-  res.send('Service is operational');
-});
-
 const PORT = process.env.PORT || 10000;
 app.listen(PORT, () => {
   console.log(`Reverse proxy listening on port ${PORT}`);
