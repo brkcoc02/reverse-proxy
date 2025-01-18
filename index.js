@@ -5,6 +5,7 @@ const app = express();
 
 // Health check endpoint
 app.get('/ping', (req, res) => {
+  console.log('Ping received');
   res.status(200).send('Service is operational');
 });
 
