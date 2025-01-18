@@ -9,7 +9,14 @@ app.get('/ping', (req, res) => {
   res.status(200).send('Service is operational');
 });
 
+//Retrieve target URL and port from environment variables
 const target = process.env.TARGET_URL;
+const PORT = process.env.PORT || 10000; // Default to 10000 if PORT is not set
+
+if(!target){
+  console.error('Error: TARGET_URL environment variable is not set.');
+  process.exit(1);
+}
 
 app.use('/', createProxyMiddleware({
   target: target,
@@ -19,7 +26,6 @@ app.use('/', createProxyMiddleware({
   }
 }));
 
-const PORT = process.env.PORT || 10000;
 app.listen(PORT, () => {
   console.log(`Reverse proxy listening on port ${PORT}`);
 });
