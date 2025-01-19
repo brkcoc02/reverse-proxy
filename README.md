@@ -34,21 +34,32 @@ This lightweight Node.js application functions as a reverse proxy, serving as th
 
 ## Configuration
 
-- **Set Environment Variables**:
+You can configure the application using either environment variables or a .env file:
 
-    Define the following environment variables to configure the application:
+### Option 1: Direct Environment Variables
 
-    - `TARGET_URL`: The URL of the target service to which requests will be proxied.
-    - `PORT`: The port number on which the proxy server will listen.
+Define the following environment variables to configure the application:
+- `TARGET_URL`: The URL of the target service to which requests will be proxied.
+- `PORT`: The port number on which the proxy server will listen.
 
-    For example, in a Unix-based environment, you can set the environment variables as follows:
+For example, in a Unix-based environment:
+```bash
+export TARGET_URL='http://your-target-service.com'
+export PORT=3000
+```
 
-    ```bash
-    export TARGET_URL='http://your-target-service.com'
-    export PORT=3000
-    ```
+### Option 2: Using .env File (For Local Development)
 
-    Ensure that these environment variables are set in the deployment environment where the application will run.
+1. Create a `.env` file in the project root directory
+2. Add your configuration:
+   ```
+   TARGET_URL=http://your-target-service.com
+   PORT=3000
+   ```
+
+Note: The `.env` file is ignored by Git for security. Use the provided `.env.example` as a template.
+
+For deployment platforms like render.com, configure these environment variables in your deployment platform's dashboard.
 
 ## Usage
 
