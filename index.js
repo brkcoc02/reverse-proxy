@@ -47,7 +47,7 @@ const createProxyConfig = (target) => ({
     followRedirects: true, // Handle redirects
     timeout: 600000, // 10 minute timeout for streams
     proxyTimeout: 600000
-}));
+});
 
 const target1 = process.env.TARGET_URL_1;
 const target2 = process.env.TARGET_URL_2;
