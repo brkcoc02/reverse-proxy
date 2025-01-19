@@ -21,27 +21,41 @@ if(!target){
 app.use('/', createProxyMiddleware({
   target: target,
   changeOrigin: true,
+  ws: true,
   onProxyReq: (proxyReq, req, res) => {
     // Set custom host header
         proxyReq.setHeader('Host', new URL(target).host);
         
-        // Remove headers that might expose backend information
+    // Remove headers that might expose backend information
         proxyReq.removeHeader('x-forwarded-for');
         proxyReq.removeHeader('x-real-ip');
+
+    // DNS resolution through proxy
+    proxyReq.setHeader('Proxy-DNS', 'true');
     },
     onProxyRes: (proxyRes, req, res) => {
-        // Remove headers that might expose backend information
+    // Remove headers that might expose backend information
         proxyRes.headers['server'] = 'proxy';
         delete proxyRes.headers['x-powered-by'];
         delete proxyRes.headers['via'];
         delete proxyRes.headers['x-runtime'];
         delete proxyRes.headers['x-served-by'];
+
+    // Handle streaming responses
+      if (proxyRes.headers['content-type']?.includes('video') ||
+          proxyRes.headers['content-type']?.includes('audio')) {
+        proxyRes.headers['Cache-Control'] = 'no-cache';
+        proxyRes.headers['X-Accel-Buffering'] = 'no';
+      }
     },
     pathRewrite: {
         '^/': '/' // URL path rewriting
     },
     secure: true, // Verify SSL certificates
     xfwd: false, // Don't add x-forward headers
+    followRedirects: true, // Handle redirects
+    timeout: 600000, // 10 minute timeout for streams
+    proxyTimeout: 600000
 }));
 
 // Remove Express fingerprint
