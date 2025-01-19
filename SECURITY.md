@@ -10,8 +10,8 @@ The following versions of this project are currently supported:
 
 | Version | Support Status | Security Updates Until |
 |---------|---------------|----------------------|
-| v2.0.0  | ✅ Active     | December 2025        |
-| v1.x.x  | ❌ End-of-Life | December 2024       |
+| v2.x.x  | ✅ Active     | Until next major version bump |
+| v1.x.x  | ❌ End-of-Life | No longer supported |
 
 We provide security updates for:
 - Active versions: All updates and security patches the the subsequent version release
