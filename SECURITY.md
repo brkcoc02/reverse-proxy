@@ -10,11 +10,11 @@ The following versions of this project are currently supported:
 
 | Version | Support Status | Security Updates Until |
 |---------|---------------|----------------------|
-| v2.x.x  | ✅ Active     | Until next major version bump |
+| v2.x.x  | ✅ Active     | December 2025 |
 | v1.x.x  | ❌ End-of-Life | No longer supported |
 
 We provide security updates for:
-- Active versions: All updates and security patches the the subsequent version release
+- Active versions: All updates and security patches
 - End-of-Life versions: Critical security patches only for 6 months
 
 ### Reporting a Vulnerability
