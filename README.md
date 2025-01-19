@@ -68,7 +68,7 @@ This lightweight Node.js application functions as a reverse proxy, serving as th
      node index.js
      ```
 
-   Ensure that the `start` script in your `package.json` is correctly configured if you choose to use `npm start`. :contentReference[oaicite:1]{index=1}
+   Ensure that the `start` script in your `package.json` is correctly configured if you choose to use `npm start`.
 
 2. **Access the Proxy**:
 
