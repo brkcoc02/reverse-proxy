@@ -8,24 +8,14 @@ app.get('/ping', (req, res) => {
   res.status(200).send('Service is operational');
 });
 
-//Retrieve target URL and port from environment variables
-const target = process.env.TARGET_URL;
-const PORT = process.env.PORT || 10000; // Default to 10000 if PORT is not set
-
-if(!target){
-  console.error('Error: TARGET_URL environment variable is not set.');
-  process.exit(1);
-}
-
-// Enhanced proxy configuration
-app.use('/', createProxyMiddleware({
-  target: target,
+const createProxyConfig = (target) => ({
+  target,
   changeOrigin: true,
   ws: true,
   onProxyReq: (proxyReq, req, res) => {
     // Set custom host header
         proxyReq.setHeader('Host', new URL(target).host);
-        
+    
     // Remove headers that might expose backend information
         proxyReq.removeHeader('x-forwarded-for');
         proxyReq.removeHeader('x-real-ip');
@@ -58,9 +48,21 @@ app.use('/', createProxyMiddleware({
     proxyTimeout: 600000
 }));
 
+const target1 = process.env.TARGET_URL_1;
+const target2 = process.env.TARGET_URL_2;
+const PORT = process.env.PORT || 10000;
+
+if (!target1 || !target2) {
+  console.error('Error: TARGET_URL_1 or TARGET_URL_2 environment variable is not set.');
+  process.exit(1);
+}
+
+app.use('/service1', createProxyMiddleware(createProxyConfig(target1)));
+app.use('/service2', createProxyMiddleware(createProxyConfig(target2)));
+
 // Remove Express fingerprint
 app.disable('x-powered-by');
 
 app.listen(PORT, () => {
-  console.log(`Reverse proxy listening on port ${PORT}`);
+  console.log(`multi-target reverse proxy listening on port ${PORT}`);
 });
