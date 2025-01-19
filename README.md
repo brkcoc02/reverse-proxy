@@ -1,3 +1,7 @@
+# 🔄⚡ Lightweight Reverse Proxy
+
+![Reverse Proxy Logo](resources/images/reverse-proxy-logo.webp?raw=true)
+
 # ⚠️ Disclaimer
 
 >This project is developed as a personal endeavor for educational purposes. It is not intended for production environments or critical applications. The author makes no representations or warranties regarding the functionality, security, or suitability of this software for any particular purpose. Users are advised to assess the software's suitability for their needs and use it at their own risk. The author shall not be held liable for any damages or issues arising from the use of this software.
