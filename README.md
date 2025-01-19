@@ -22,13 +22,13 @@ This lightweight Node.js application functions as a reverse proxy, serving as th
 1. **Clone the Repository**:
    
    ```bash
-   git clone https://github.com/brkcoc02/reverse-proxy-service.git
+   git clone https://github.com/brkcoc02/reverse-proxy.git
    ```
 
 2. **Navigate to the Project Directory**:
 
     ```bash
-    cd reverse-proxy-service
+    cd reverse-proxy
     ```
 
 3. **Install Dependencies**:
