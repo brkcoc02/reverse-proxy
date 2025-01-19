@@ -39,7 +39,8 @@ const createProxyConfig = (target) => ({
       }
     },
     pathRewrite: {
-        '^/': '/' // URL path rewriting
+      '^/service1': '/', // URL path rewriting for service1
+      '^/service2': '/'  // URL path rewriting for service2      
     },
     secure: true, // Verify SSL certificates
     xfwd: false, // Don't add x-forward headers
