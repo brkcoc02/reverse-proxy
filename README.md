@@ -52,10 +52,10 @@ export PORT=3000
 
 1. Create a `.env` file in the project root directory
 2. Add your configuration:
-   ```
-   TARGET_URL=http://your-target-service.com
-   PORT=3000
-   ```
+```
+TARGET_URL=http://your-target-service.com
+PORT=3000
+```
 
 Note: The `.env` file is ignored by Git for security. Use the provided `.env.example` as a template.
 
