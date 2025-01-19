@@ -1,6 +1,6 @@
 # Liability Disclaimer
 
-This software is provided "as-is" for educational and personal use. The author does not guarantee the security, reliability, or performance of this software. Users are responsible for evaluating the software's suitability for their purposes. The author shall not be liable for any damages, security breaches, or other issues arising from the use of this software.
+This software and all its versions are provided "as-is" for educational and personal use. The author does not guarantee the security, reliability, or performance of this software or its dependencies. Users are responsible for evaluating the software's suitability for their purposes and conducting appropriate security assessments. This software is not recommended for production use without proper security evaluation. The author shall not be liable for any damages, security breaches, or other issues arising from the use of this software or its dependencies.
 
 ## Security Policy
 
@@ -8,7 +8,14 @@ This software is provided "as-is" for educational and personal use. The author d
 
 The following versions of this project are currently supported:
 
-- v2.0.0
+| Version | Support Status | Security Updates Until |
+|---------|---------------|----------------------|
+| v2.0.0  | ✅ Active     | December 2025        |
+| v1.x.x  | ❌ End-of-Life | December 2024       |
+
+We provide security updates for:
+- Active versions: All updates and security patches the the subsequent version release
+- End-of-Life versions: Critical security patches only for 6 months
 
 ### Reporting a Vulnerability
 
