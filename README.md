@@ -13,6 +13,20 @@ This lightweight Node.js application functions as a reverse proxy, serving as th
 - 🕵️‍♂️ **IP Obfuscation**: Conceals the actual IP address of the target service, enhancing accessibility.
 - ⚡ **Lightweight**: Minimal resource usage, ensuring swift and reliable performance.
 
+## 💻 System Interaction Overview
+
+```mermaid
+sequenceDiagram
+    participant Client
+    participant ReverseProxy
+    participant TargetServer
+
+    Client->>ReverseProxy: HTTP Request
+    ReverseProxy->>TargetServer: Forward Request
+    TargetServer-->>ReverseProxy: Response
+    ReverseProxy-->>Client: Forward Response
+```
+
 ## 🛠️ Prerequisites
 
 - 🌐 **Node.js**: Ensure Node.js is installed on your system. Download it from [nodejs.org](https://nodejs.org/).
