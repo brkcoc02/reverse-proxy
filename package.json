@@ -12,6 +12,8 @@
   },
   "engines":{
     "node":">=23.6.0"
+  "scripts": {
+  "start": "node --max-old-space-size=4096 index.js"
   },
   "license":"MIT"
 }
