@@ -1,5 +1,6 @@
 const express = require('express');
 const { createProxyMiddleware } = require('http-proxy-middleware');
+const { body, query, header, validationResult } = require('express-validator');
 const app = express();
 const winston = require('winston');
 const DailyRotateFile = require('winston-daily-rotate-file');
@@ -28,6 +29,25 @@ transport.on('error', (error) => {
   logger.error(`Logging error: ${error.message}`);
 });
 
+// Minimal security-focused validation middleware
+const validateRequest = [
+  // Validate essential headers
+  header('content-type').optional().isString().matches(/^application\/(json|x-www-form-urlencoded|xml)|multipart\/form-data/).withMessage('Invalid content type'),
+  header('host').isString().notEmpty().withMessage('Host header is required'),
+  
+  // Validation error handler
+  (req, res, next) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      logger.warn('Validation failed', { errors: errors.array() });
+      return res.status(400).json({
+        error: 'Invalid request'
+      });
+    }
+    next();
+  }
+];
+
 // Health check endpoint
 app.get('/ping', (req, res) => {
   logger.info('Ping received');
@@ -44,7 +64,7 @@ if(!target){
 }
 
 // Enhanced proxy configuration
-app.use('/', createProxyMiddleware({
+app.use('/', validateRequest, createProxyMiddleware({
   target: target,
   changeOrigin: true,
   onError: (err, req, res) => {
