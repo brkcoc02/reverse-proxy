@@ -2,7 +2,9 @@ const express = require('express');
 const { createProxyMiddleware } = require('http-proxy-middleware');
 const app = express();
 const winston = require('winston');
+const DailyRotateFile = require('winston-daily-rotate-file');
 
+// Logger configuration
 const logger = winston.createLogger({
   level: 'info',
   format: winston.format.combine(
@@ -11,8 +13,19 @@ const logger = winston.createLogger({
   ),
   transports: [
     new winston.transports.Console(),
-    new winston.transports.File({ filename: 'logs/combined.log' })
+    new DailyRotateFile({
+      filename: 'logs/application-%DATE%.log',
+      datePattern: 'YYYY-MM-DD',
+      zippedArchive: true,
+      maxSize: '20m',
+      maxFiles: '14d'
+    })
   ],
+});
+
+// Handle errors emitted by the transport
+transport.on('error', (error) => {
+  logger.error(`Logging error: ${error.message}`);
 });
 
 // Health check endpoint
